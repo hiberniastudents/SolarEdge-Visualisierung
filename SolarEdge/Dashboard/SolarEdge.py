@@ -84,13 +84,16 @@ def unit2():
 
     return unit2_dict
 
-unit1_data = unit1()
-unit2_data = unit2()
+#unit1_data = unit1()
+#unit2_data = unit2()
 
-power_all = int(unit1_data['current_power']) + int(unit2_data['current_power'])
-energy_all = int(unit1_data['current_energy']) + int(unit2_data['current_energy'])
+def all(unit1_data, unit2_data):
+    power_all = int(unit1_data['current_power']) + int(unit2_data['current_power'])
+    energy_all = int(unit1_data['current_energy']) + int(unit2_data['current_energy'])
+    all_dict = dict(power = power_all, energy = energy_all)
+    return all_dict
 
-
+'''
 print('Anlage 1')
 print('Installation Date: ' + unit1_data['installation_date'])
 print('Energy: ' + str(unit1_data['current_energy']) + ' Wh')
@@ -105,4 +108,5 @@ print('Gesamt')
 print('Energy: ' + str((energy_all / 1000)) + ' kWh')
 print('Power: ' + str(power_all) + ' W')
 print('\n')
+'''
 
