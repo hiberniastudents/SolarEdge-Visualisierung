@@ -1,17 +1,19 @@
 ﻿from solaredge.api.client import Client
 import datetime
-import json
 
 
 today = datetime.datetime.now()
 
 today_date = today.strftime("%Y-%m-%d")
+today_date_1 = datetime.datetime.now().date()
 today_date_time = today.strftime("%Y-%m-%d %H:%M:%S")
 today_date_time_beginn = today_date + ' 00:00:00'
 today_time = today.strftime("%H:%M")
 today_hour_in_sec = datetime.timedelta(hours=today.hour, minutes=today.minute).seconds
 today_hour = float(float(today_hour_in_sec) / 3600)
 today_quarter_num = int(today_hour / 0.25)
+date_7_days = today_date_1 - datetime.timedelta(days=7)
+
 
 
 API_KEY = 'FRUFGTE3ISBRDDTKIBOIB02BX0A2PG03'
@@ -48,10 +50,11 @@ def unit1():
         if power == None:
             power = 0
         unit1_powers[x] = power
+        power_day_until_now = 0
+        power_day_until_now = float(power_day_until_now) + float(power)
+        energy_day_until_now = float(power_day_until_now) * 0.25
 
-
-    unit1_dict = dict(unit = 1, installation_date = installation_date_1, current_date = today_date, current_power = current_power_1, current_energy = current_energy_1, power_of_day = unit1_powers)
-
+    unit1_dict = dict(unit = 1, installation_date = installation_date_1, current_date = today_date, current_power = current_power_1, current_energy = current_energy_1, power_day_until_now = power_day_until_now, energy_day_until_now = energy_day_until_now, power_of_day = unit1_powers)
     return unit1_dict
 
 
@@ -79,18 +82,48 @@ def unit2():
         if power == None:
             power = 0
         unit2_powers[x] = power
+        power_day_until_now = 0
+        power_day_until_now = float(power_day_until_now) + float(power)
+        energy_day_until_now = float(power_day_until_now) * 0.25
     
-    unit2_dict = dict(unit = 2, installation_date = installation_date_2, current_date = today_date, current_power = current_power_2, current_energy = current_energy_2, power_of_day = unit2_powers)
+    unit2_dict = dict(unit = 2, installation_date = installation_date_2, current_date = today_date, current_power = current_power_2, current_energy = current_energy_2, power_day_until_now = power_day_until_now, energy_day_until_now = energy_day_until_now, power_of_day = unit2_powers)
 
     return unit2_dict
 
+'''
+def energy_7_days():
+    energy_1 = se_client.sites.get_energy(SITE_ID_1, date_7_days, today_date, 'DAY')
+    energy_2 = se_client.sites.get_energy(SITE_ID_2, date_7_days, today_date, 'DAY')
+    watt_day_hour = dict()
+    for i in range(665):
+        print(i)
+        if i == 0:
+            continue
+        power1 = energy_1['energy']['values'][i]['value']
+        power2 = energy_2['energy']['values'][i]['value']
+        power = int(power1) + int(power2)
+        watt_day_hour[i] = power
+        i = i +4
+
+    energy_7_days = int(energy_1['energy']['values'][0]['value']) + int(energy_2['energy']['values'][0]['value'])
+    energy_7_days_dict = dict(energy_7_days = energy_7_days, watt_day_hour = watt_day_hour)
+    return energy_7_days_dict
+
+print(energy_7_days())
+'''
 #unit1_data = unit1()
 #unit2_data = unit2()
 
 def all(unit1_data, unit2_data):
-    power_all = int(unit1_data['current_power']) + int(unit2_data['current_power'])
-    energy_all = int(unit1_data['current_energy']) + int(unit2_data['current_energy'])
-    all_dict = dict(power = power_all, energy = energy_all)
+    print(unit1_data['energy_day_until_now'])
+    print(unit2_data['energy_day_until_now'])
+    energy_day_until_now = float(unit1_data['energy_day_until_now']) + float(unit2_data['energy_day_until_now'])
+    print(energy_day_until_now)
+    power_all = float(unit1_data['current_power']) + float(unit2_data['current_power'])
+    print(unit1_data['current_power'])
+    print(unit2_data['current_power'])
+    energy_all = float(unit1_data['current_energy']) + float(unit2_data['current_energy'])
+    all_dict = dict(power = power_all, energy = energy_all, energy_day_until_now = energy_day_until_now)
     return all_dict
 
 '''

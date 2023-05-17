@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-
+{% load static %}
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <title>PV-Anlagen Hibernia</title>
 </head>
 
@@ -21,17 +21,17 @@
           <table border="1">
               <tr>
                   <td><p>Aktuelle Leistung in W</p><output name="energy_now"></output></td>
-                  <td><p>Energie Heute in W</p><output name="energy_today"></output></td>
+                  <td><p>Energie Heute in Wh</p>{{all_data.energy_day_until_now}}</td>
                   <td><p>Energie Monat in W</p><output name="energy_month"></output></td>
-                  <td><p>Gesamtenergie in W</p><output name="total_energy"></output></td>
+                  <td><p>Gesamtenergie in Wh</p>{{all_data.energy}}</td>
               </tr>
           </table>
             <script>
                 // Daten abrufen oder berechnen (Beispielwerte)
-                var energyNow = {{all_data.power.energy}};
-                var energyToday = {{}};
+                var energyNow = {{all_data.power}};
+                // var energyToday = ;
                 //var energyMonth = {{DatenDerMonatlichenProduktion}};
-                var totalEnergy = {{all_data.energy};
+                var totalEnergy = {{all_data.energy}};
 
                 //var energyNow = 1023;
                 //var energyToday = 142761;
@@ -65,10 +65,10 @@
           <h5>Vorteile für die Umwelt</h5>
           <table border="1">
               <tr>
-                  <td><img src="img/eco-energy.png"><p>Eingesparte CO2-Emissionen</p><output name="CO2emission"></output></td>
+                  <td><img src="{% static 'img/eco-energy.png' %}"><p>Eingesparte CO2-Emissionen</p><output name="CO2emission"></output></td>
               </tr>
               <tr>
-                <td><img src="img/plant-a-tree.png"><p>Entspricht gepflanzten Bäumen</p><output name="plantedTree"></output></td>
+                <td><img src="{% static 'img/plant-a-tree.png' %}"><p>Entspricht gepflanzten Bäumen</p><output name="plantedTree"></output></td>
               </tr>
           </table>
         </div>
