@@ -76,12 +76,12 @@ Der folgende HTML tag kann auch genutzt werden:
 
 Dashboard Ansicht:
 
-![](https://github.com/hiberniastudents/Solar-Edge-Dashboard---hibernia/blob/main/dashboard-view.png?raw=true)
+![](https://github.com/hiberniastudents/SolarEdge-Visualisierung/blob/main/dashboard-view.png?raw=true)
 
 
 Einbettungs Ansicht:
 
-![](https://github.com/hiberniastudents/Solar-Edge-Dashboard---hibernia/blob/main/embed-view.png?raw=true)
+![](https://github.com/hiberniastudents/SolarEdge-Visualisierung/blob/main/embed-view.png?raw=true)
 
 
 
