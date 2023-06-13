@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="refresh" content="300"> <!-- Reload every 5 minutes -->
+  <link rel="stylesheet" href="static/css/styles.css">
+  <link rel="icon" href="static/css/img/solar-panel.png">
+  <title>{{ title }}</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!--<script>
+      // Reload the page after 5 minutes (300000 milliseconds)
+      setTimeout(function() {
+          location.reload();
+      }, 5 * 1000);
+    </script>-->
+  <style>
+    :root {
+      --text: {{ color[0] }};
+      --topcolor: {{ color[1] }};
+      --toptext: {{ color[2] }};
+    }
+  </style>
+</head>
+
+<header>
+  <p>{{ title }}</p>
+  <div><img src="{{ logo_url }}" alt=""></div>
+</header>
+
+<body>
+
+  <div class="grid-container">
+
+    <div id="box0">
+      <h3>Systemeffizienz</h3>
+      <table border="1">
+        <tr>
+          <td>
+            <p>Aktuelle Leistung</p><output>{{tcp}} kW</output>
+          </td>
+          <td>
+            <p>Bisherige Produktion Heute</p><output>{{tlde}} kWh</output>
+          </td>
+          <td>
+            <p>Bisherige Produktion im Monat</p><output>{{tlme}} MWh</output>
+          </td>
+          <td>
+            <p>Bisherige Produktion im Jahr</p><output>{{tlye}} MWh</output>
+          </td>
+          <td>
+            <p>Bisherige Gesamtproduktion</p><output>{{teoat}} MWh</output>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div id="box1_1">
+      <div><canvas id="production_2day"></canvas></div>
+    </div>
+
+    <div id="box1_2">
+      <div><canvas id="production-over7days"></canvas></div>
+    </div>
+
+    <div id="box2">
+      <h3>Vorteile für die Umwelt</h3>
+      <table border="1">
+        <tr>
+          <td>
+            <div class="table">
+              <div class="image">
+                <img src="static/css/img/eco-energy.png">
+              </div>
+              <div class="text">
+                <p>Eingesparte CO2-Emissionen</p><output>{{ savedco2 }} kg</output>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="table">
+              <div class="image">
+                <img src="static/css/img/plant-a-tree.png">
+              </div>
+              <div class="text">
+                <p>Entspricht gepflanzten Bäumen *</p><output>{{ plantedtrees }}</output>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="table">
+              <div class="image">
+                <img class="houseimg" src="static/css/img/house.png">
+              </div>
+              <div class="text">
+                <p>Haushalte mit Strom für 1 Jahr</p><output>{{ homes }}</output>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
+      <p id="source">*Laut der Datenbank von SolarEdge</p>
+    </div>
+  </div>
+
+  </div>
+
+</body>
+
+<footer>
+
+</footer>
+
+<!--<script>
+    // JavaScript-Code, um die Container abwechselnd sichtbar zu machen
+    setInterval(function() {
+      var box1_1 = document.querySelector('#box1_1');
+      var box1_2 = document.querySelector('#box1_2');
+
+      if (box1_1.style.display === 'none') {
+        box1_1.style.display = 'block';
+        box1_2.style.display = 'none';
+      } else if (box1_2.style.display === 'none') {
+        box1_2.style.display = 'block';
+      } else {
+        box1_1.style.display = 'none';
+      }
+    }, 15000); // Wechsel alle 15 Sekunden (15000 Millisekunden)
+</script>-->
+<script>
+  // Container-Elemente auswählen
+  const container1 = document.getElementById('box1_1');
+  const container2 = document.getElementById('box1_2');
+
+  // Variable zum Verfolgen des aktuellen sichtbaren Containers
+  let currentContainer = 1;
+
+  // Funktion zum Wechseln der Container-Sichtbarkeit
+  function toggleContainers() {
+    if (currentContainer === 1) {
+      container1.style.display = 'none';
+      container2.style.display = 'block';
+      currentContainer = 2;
+    } else {
+      container1.style.display = 'block';
+      container2.style.display = 'none';
+      currentContainer = 1;
+    }
+  }
+
+  // Initialen Aufruf der Funktion, um einen Container sichtbar zu machen
+  toggleContainers();
+
+  // Intervall für den automatischen Wechsel der Container-Sichtbarkeit (alle 2 Sekunden)
+  setInterval(toggleContainers, 15000);
+</script>
+
+<script>
+  const ctx = document.getElementById('production_2day');
+  var Watt = {{ current_list | tojson }};
+  var Uhrzeit = {{ time_list | tojson }};
+  //Data = Watt um YY:YY, Labels = Uhrzeit errechnet aus allen 15 min.
+  //var Watt = [0,25127.0,9692.334,16843.0,18584.334,21833.0,5256.667,19747.332,18170.668,8089.667,10013.666,6856,4194.6665,4689.0,5635.3335,7185.667,10126.0,9637.0,5220.3335,2360.3335,2008.0,921.3334,438.6667,600.0,603.6667,326.3333,158.0,144.0,73.333336,0.0,0.0,0,0,];
+  //var Uhrzeit = [0600, 0615, 0630, 0645, 0700, 0715, 0730, 0745, 0800, 0815, 0830, 0845, 0900, 0915, 0930, 0945, 1000];
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: Uhrzeit,
+      datasets: [{
+        label: 'Tägliche Produktion der Anlagen in kW',
+        data: Watt,
+        fill: false,
+        borderColor: 'rgb(75, 192, 192)',
+        tension: 0.1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>
+
+<script>
+  const cty = document.getElementById('production-over7days');
+  var kWh = {{ last_7_energy | tojson }};
+  var Datum = {{ last_7_day | tojson }};
+  /*Data = Wattstunden vom YY.YY, Labels = Datum der produzierten Wh
+  var Wh = [143461.0, 142756.0, 2761.0, 134561.0, 93761.0, 1461.0, 761.0];
+  var Datum = [09.05, 10.05, 11.05, 12.05, 13.05, 14.05, 15.05];*/
+  new Chart(cty, {
+    type: 'bar',
+    data: {
+      labels: Datum,
+      datasets: [{
+        label: 'Produktion der letzten 7 Tage in kWh',
+        data: kWh,
+        borderWidth: 1,
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>
+
+</html>

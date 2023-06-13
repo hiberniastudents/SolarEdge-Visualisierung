@@ -1,0 +1,85 @@
+﻿
+header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    background-color: var(--topcolor);
+    color: var(--toptext);
+}
+
+header p {
+    margin-left: 1rem;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    width: 500px;
+    height: 500px;
+}
+
+table,
+tr,
+td {
+    border: 0.5px solid var(--topcolor);
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table tr td p {
+    font-size: 16.5px;
+    font-weight: bold;
+    color: var(--text);
+}
+
+table tr td output {
+    font-size: 20px;
+}
+
+.table {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image {
+    flex-basis: 25%;
+}
+
+.image img {
+    max-width: 139%;
+    display: flex;
+
+}
+
+.text p {
+    font-size: 16.5px;
+}
+
+.text output {
+    font-size: 20px;
+}
+
+#box2 #source {
+    text-align: right;
+    font-size: 0.8rem;
+}
+
+.houseimg {
+    width: 80%;
+}
+
+.logo img {
+    width: 15%;
+}
+
+.logo {
+    display: flex;
+    justify-content: right;
+}

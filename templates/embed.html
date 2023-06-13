@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="refresh" content="300"> <!-- Reload every 5 minutes -->
+    <link rel="stylesheet" href="static/css/embed.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <style>
+        :root {
+            --text: {{ color[0] }};
+            --topcolor: {{ color[1] }};
+            --toptext: {{ color[2] }};
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <p>{{ title }}</p>
+    </header>
+    <div id="box0">
+        <table border="2">
+            <tr>
+                <td>
+                    <p>Aktuelle Leistung</p><output>{{tcp}} kW</output>
+                </td>
+                <td>
+                    <p>Bisherige Gesamtproduktion</p><output>{{teoat}} MWh</output>
+                </td>
+            </tr>
+        </table>
+        <table border="3">
+            <tr>
+                <td>
+                    <p>Produktion Heute</p><output>{{tlde}} kWh</output>
+                </td>
+                <td>
+                    <p>Produktion im Monat</p><output>{{tlme}} MWh</output>
+                </td>
+                <td>
+                    <p>Produktion im Jahr</p><output>{{tlye}} MWh</output>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="box1">
+        <table border="2">
+            <tr>
+                <td>
+                    <div class="table">
+                        <div class="image">
+                            <img src="static/css/img/eco-energy.png">
+                        </div>
+                        <div class="text">
+                            <p>Eingesparte CO2-Emissionen</p><output>{{ savedco2 }} kg</output>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="table">
+                        <div class="image">
+                            <img src="static/css/img/plant-a-tree.png">
+                        </div>
+                        <div class="text">
+                            <p>Entspricht gepflanzten Bäumen</p><output>{{ plantedtrees }}</output>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <table border="2">
+            <tr>
+                <td>
+                    <div class="table">
+                        <div class="image">
+                            <img class="houseimg" src="static/css/img/house.png">
+                        </div>
+                        <div class="text">
+                            <p>Haushalte mit Strom für 1 Jahr</p><output>{{ homes }}</output>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="logo">
+        <img src="{{ logo_url }}" alt="">
+    </div>
+</body>
+
+</html>
