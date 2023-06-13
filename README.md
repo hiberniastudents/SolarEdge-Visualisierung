@@ -72,5 +72,16 @@ Der folgende HTML tag kann auch genutzt werden:
 <iframe src="http://ip-or-hostname-of-server:5000/?embed=true" frameborder="0" height="550px" width="550px"></iframe>
 ```
 
+## Screenshots
+
+Dashboard Ansicht:
+
+![](https://github.com/hiberniastudents/Solar-Edge-Dashboard---hibernia/blob/main/dashboard-view.png?raw=true)
+
+
+Einbettungs Ansicht:
+
+![](https://github.com/hiberniastudents/Solar-Edge-Dashboard---hibernia/blob/main/embed-view.png?raw=true)
+
 
 
