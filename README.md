@@ -32,13 +32,13 @@ Damit Daten abgerufen werden können, müssen Folgende variablen in der Datei ``
 
 ```python
 API_KEY = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX' # Hier den Account API Schlüssel einfügen
-SITE_IDs = ['XXXXXXX', 'XXXXXXX'] # Hier werden die Anlagen ID´s als Liste hinterlegt
+SITE_IDs = ['XXXXXXX', 'XXXXXXX'] # Hier werden die Standort ID´s als Liste hinterlegt
 ```
 
 <span style="color: red; font-weight: bolder;">!WICHTIG!</span>
 <br>
 Unter ```API_KEY``` bitte NUR den API Schlüssel des Accounts keinen Seiten API Schlüssel eintragen!<br>
-Bei ```SITE_IDs``` können beliebig viele Anlagen ID´s hinterlegt werden. <span style="color: red; font-weight: bold">!Bitte beachten!</span> In der Ansicht werden nacher die Daten aller Anlagen Zusammengerechnet. 
+Bei ```SITE_IDs``` können beliebig viele Standort ID´s hinterlegt werden. <span style="color: red; font-weight: bold">!Bitte beachten!</span> In der Ansicht werden nacher die Daten aller Anlagen Zusammengerechnet. 
 <br>
 
 Die folgenden Variablen geben sind für das Aussehen und die Beschreibung zuständig: <br>
